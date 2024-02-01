@@ -40,7 +40,11 @@
         <!-- About Section -->
         <section>
             <h2>About Us</h2>
-            <p>This is a sample section about us. we will help you find your home.</p>
+            <form action="/your-server-side-script" method="POST">
+                <label for="cityName">Enter City Name:</label><br>
+                <input type="text" id="cityName" name="cityName" required><br>
+                <input type="submit" value="Search">
+            </form>
         </section>
 
         <!-- Services Section -->
