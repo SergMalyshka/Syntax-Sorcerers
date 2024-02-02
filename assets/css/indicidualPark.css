@@ -1,0 +1,28 @@
+#campground-container, #activities-container {
+    text-align: center;
+    display: none;
+}
+
+#pictures-container {
+    text-align: center;
+    display: block;
+}
+
+header {
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+    background-color: forestgreen;
+    min-height: 10vh;
+}
+
+#park-header {
+    font-size: 100px;
+}
+
+#map {
+    height: 60vh;
+}
+
