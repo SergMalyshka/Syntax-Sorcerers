@@ -1,6 +1,11 @@
-#campground-container, #activities-container {
+#campground-container,
+#miscalleneous-container {
     text-align: center;
+    background-color: transparent;
     display: none;
+    margin-left: 20px;
+    margin-right: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 }
 
 #pictures-container {
@@ -8,21 +13,78 @@
     display: block;
 }
 
-header {
-    top: 0;
-    left: 0;
-    right: 0;
+#description {
+    text-wrap: wrap;
+    padding: 10px;
+    font-family: Titillium Web, sans-serif;
+    margin-right: 10px;
     text-align: center;
-    z-index: 10;
-    background-color: forestgreen;
-    min-height: 10vh;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.card {
+    margin: 5px;
+}
+
+
+.card-header-title {
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+}
+
+#description-container {
+    position: relative;
+    margin-top: 11px;
+    margin-left: 10px;
+}
+
+#preview-img {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border: 2px solid black;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+nav {
+    text-align: center;
+    background-color: rgb(24, 61, 61);
+    border-bottom: 1px outset #000000;
 }
 
 #park-header {
-    font-size: 100px;
+    text-align: center;
+    font-size: 35px;
+    margin-left: 15px;
+    font-family: Archivo Black, sans-serif;
 }
 
 #map {
-    height: 60vh;
+    height: 80vh;
 }
 
+.is-primary {
+    margin: 2px;
+    background-color: rgb(128, 229, 223);
+}
+
+#navbar {
+    background-color: rgb(133, 229, 255);
+}
+
+#slideshow-img {
+    max-height: 100vh;
+    object-fit: contain;
+    padding: 5px;
+    margin-bottom: 1em;
+    background-color: transparent;
+}
+
+body {
+    background-image: linear-gradient(to bottom, rgb(133, 229, 255), white);
+}
+
+#selector {
+    margin-bottom: 0px;
+}
