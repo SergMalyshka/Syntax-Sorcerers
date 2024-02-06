@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Iterate through data to create cards
             data.data.forEach(function(park) {
+                var parkCode = park.parkCode
+                var anchor = document.createElement("a")
+
+                anchor.setAttribute("href", "./individualPark.html?parkCode=" + parkCode)
                 var card = document.createElement("div");
                 card.className = "card";
 
@@ -34,8 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 card.appendChild(cardTitle);
                 card.appendChild(cardDescription);
+                anchor.appendChild(card)
 
-                servicesContainer.appendChild(card);
+                servicesContainer.appendChild(anchor);
             });
         })
         .catch(error => console.error('Error:', error));
