@@ -5,80 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syntax Sorcerers</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <style>
-        /* Simple CSS for layout */
-        header, section, footer {
-            margin: 20px;
-            padding: 15px;
-            border: 1px solid #bc1717;
-            border-radius: 5px;
-        }
-
-        /* CSS for the services cards */
-        .services-container {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .card {
-            flex: 0 0 30%; /* Each card takes up 30% of the container width */
-            margin: 10px;
-            padding: 15px;
-            border: 1px solid #1c0fd0;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-    </style>
+    
 </head>
 <body>
     <header>
-        <h1>Welcome to My Sample Website</h1>
+        <h1>Sargo National Park Foundation</h1>
     </header>
 
     <!-- Main Content Section -->
     <main>
-        <!-- About Section -->
+        <!-- Enter state form section -->
         <section>
-            <h2>About Us</h2>
+            <h2>Enter State Below:</h2>
             <form>
-                <label for="stateName">Enter City Name:</label><br>
+                
                 <input type="text" id="stateName" name="stateName" required><br>
                 <button id="submit-button" type="submit">Search</button>
             </form>
         </section>
 
-        <!-- Services Section -->
-        <section>
-            <h2>Our Services</h2>
+        <!-- Parks info coming in Section -->
+        <section id = "parks-container">
+            <h2>National Parks: </h2>
             <div class="services-container">
-                <!-- Card 1 -->
-                <div class="card">
-                    <h3>Service 1</h3>
-                    <p>Description of Service 1.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="card">
-                    <h3>Service 2</h3>
-                    <p>Description of Service 2.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="card">
-                    <h3>Service 3</h3>
-                    <p>Description of Service 3.</p>
-                </div>
+                
             </div>
         </section>
 
         <!-- Contact Section -->
         <section>
             <h2>Contact Us</h2>
-            <p>Here you can add contact information or a form.</p>
+            <p>Email, call, or contact us on social media</p>
         </section>
     </main>
 
     <!-- Footer Section -->
     <footer>
-        <p>this should be the copyright logo or company name </p>
+        <p>Sargo Park Foundation </p>
     </footer>
     <script src="./assets/script/script.js"></script>
 </body>

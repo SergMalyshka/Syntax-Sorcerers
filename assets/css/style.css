@@ -114,3 +114,7 @@ footer {
         margin: 10px auto;
     }
 }
+
+#parks-container{
+display: none;
+}
