@@ -77,6 +77,15 @@ input[type="submit"]:hover {
     justify-content: space-around;
 }
 
+.favorite-tags {
+    margin: 2px;
+}
+
+.tags {
+    align-items: normal!important;
+    margin: 3px;
+}
+
 .card {
     background: #ffffff;
     margin: 10px;

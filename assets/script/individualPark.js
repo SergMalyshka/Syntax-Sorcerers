@@ -17,6 +17,8 @@ var directionsLink = document.querySelector("#directions-link")
 var weatherInfo = document.querySelector("#weather-info")
 var favoriteButton = document.querySelector("#favorite-button")
 var slideshow = document.querySelector("#slideshow")
+var heartEl = document.querySelector("#heart")
+var favoriteTextEl = document.querySelector("#favorite-text")
 var campgrounds = [];
 var favourites = [];
 let map;
@@ -25,7 +27,7 @@ var parkLat;
 var parkLon;
 
 let params = new URL(document.location).searchParams;
-let parkCode = params.get("parkCode"); // is the string "Jonathan Smith".
+let parkCode = params.get("parkCode");
 
 function closeTabs() {
     for (var i = 0; i < tabElements.length; i++) {
@@ -45,7 +47,7 @@ for (var i = 0; i < tabElements.length; i++) {
 }
 
 function runApi() {
-    fetch("https://developer.nps.gov/api/v1/parks?parkCode="+ parkCode +"&api_key=QqdXFabPk82c8cfnPritbZ46DOJkuX1us430e5Qa", {
+    fetch("https://developer.nps.gov/api/v1/parks?parkCode=" + parkCode + "&api_key=QqdXFabPk82c8cfnPritbZ46DOJkuX1us430e5Qa", {
         headers: {
             'accept': 'application/json'
         }
@@ -53,33 +55,31 @@ function runApi() {
         if (response.ok) {
             return response.json();
         }
-    }).then(function (data) {
-        console.log(data)
-        parkHeaderEl.textContent = data.data[0].fullName
+    }).then(function (parkData) {
+        parkHeaderEl.textContent = parkData.data[0].fullName
 
-        parkName = data.data[0].name
-        parkLat = data.data[0].latitude
-        parkLon = data.data[0].longitude
+        parkName = parkData.data[0].name
+        checkStorage();
 
-        descriptionEl.textContent = data.data[0].description;
-        previewImgEl.setAttribute("src", data.data[0].images[0].url)
+        descriptionEl.textContent = parkData.data[0].description;
+        previewImgEl.setAttribute("src", parkData.data[0].images[0].url)
 
 
-        centerMap(data.data[0])
+        centerMap(parkData.data[0])
         getCampgrounds();
 
 
-        populateSlideShow(data.data[0].images)
-        populateActivities(data.data[0].activities)
-        directionsInfo.textContent = data.data[0].directionsInfo
-        directionsLink.setAttribute("href", data.data[0].directionsUrl)
-        directionsLink.setAttribute("target","_blank")
-        weatherInfo.textContent = data.data[0].weatherInfo
+        populateSlideShow(parkData.data[0].images)
+        populateActivities(parkData.data[0].activities)
+        directionsInfo.textContent = parkData.data[0].directionsInfo
+        directionsLink.setAttribute("href", parkData.data[0].directionsUrl)
+        directionsLink.setAttribute("target", "_blank")
+        weatherInfo.textContent = parkData.data[0].weatherInfo
     });
 }
 
 function getCampgrounds() {
-    fetch("https://developer.nps.gov/api/v1/campgrounds?parkCode="+parkCode+"&api_key=QqdXFabPk82c8cfnPritbZ46DOJkuX1us430e5Qa", {
+    fetch("https://developer.nps.gov/api/v1/campgrounds?parkCode=" + parkCode + "&api_key=QqdXFabPk82c8cfnPritbZ46DOJkuX1us430e5Qa", {
         headers: {
             'accept': 'application/json'
         }
@@ -87,9 +87,9 @@ function getCampgrounds() {
         if (response.ok) {
             return response.json();
         }
-    }).then(function (data) {
-        for (var i = 0; i < data.data.length; i++) {
-            var center = new google.maps.LatLng(data.data[i].latitude, data.data[i].longitude)
+    }).then(function (mapData) {
+        for (var i = 0; i < mapData.data.length; i++) {
+            var center = new google.maps.LatLng(mapData.data[i].latitude, mapData.data[i].longitude)
             var marker = new google.maps.Marker({
                 map: map,
                 position: center
@@ -136,8 +136,8 @@ function populateSlideShow(data) {
 function populateActivities(data) {
 
     for (var i = 0; i < data.length; i++) {
-        var individualActivity = document.createElement("button")
-        individualActivity.classList = "button is-primary"
+        var individualActivity = document.createElement("span")
+        individualActivity.classList = "tag is-info is-rounded is-medium is-light individual-activities"
         individualActivity.textContent = data[i].name
         activitiesInfo.appendChild(individualActivity)
     }
@@ -156,39 +156,48 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 }
 
-favoriteButton.addEventListener("click", function () {
+function checkStorage() {
+    heartEl.classList = "fa-regular fa-heart"
+    favoriteTextEl.textContent = "Favorite"
     favourites = JSON.parse(localStorage.getItem("favourites"))
-
-    var location = {
-        name: parkName,
-        lat: parkLat,
-        lon: parkLon
-    }
-
-    var favouritesContainsCity = false;
-
     if (favourites !== null) {
-
         for (var i = 0; i < favourites.length; i++) {
             if (favourites[i].name === parkName) {
-                favouritesContainsCity = true;
+                heartEl.classList = "fa-solid fa-heart"
+                favoriteTextEl.textContent = "Already Favorited"
             }
         }
+    }
+}
 
-        if (!favouritesContainsCity) {
-            favourites.push(location)
-            localStorage.setItem("favourites", JSON.stringify(favourites))
-        } else {
-            alert("already there")
-        }
-    } else {
+function addToLocalStorage(favourites, data) {
+    favourites.push(data);
+    localStorage.setItem("favourites", JSON.stringify(favourites))
+    checkStorage()
+}
 
-        favourites = [];
-        favourites.push(location)
-        localStorage.setItem("favourites", JSON.stringify(favourites))
-        
+favoriteButton.addEventListener("click", function () {
+    favourites = JSON.parse(localStorage.getItem("favourites"))
+    var location = {
+        name: parkName,
+        code: parkCode
     }
 
+    if (favoriteTextEl.textContent === "Already Favorited") {
+        for (var i = 0; i < favourites.length; i++) {
+            if (favourites[i].name === parkName) {
+                favourites.splice(i, 1);
+                localStorage.setItem("favourites", JSON.stringify(favourites))
+                checkStorage()
+            }
+        }
+    } else if (favourites === null) {
+        favourites = [];
+        addToLocalStorage(favourites, location)
+    } else {
+        addToLocalStorage(favourites, location)
+    }
+    checkStorage()
 })
 
 closeTabs();
