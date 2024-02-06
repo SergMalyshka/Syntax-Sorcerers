@@ -24,6 +24,9 @@ var parkName;
 var parkLat;
 var parkLon;
 
+let params = new URL(document.location).searchParams;
+let parkCode = params.get("parkCode"); // is the string "Jonathan Smith".
+
 function closeTabs() {
     for (var i = 0; i < tabElements.length; i++) {
         tabElements[i].className = "";
@@ -42,7 +45,7 @@ for (var i = 0; i < tabElements.length; i++) {
 }
 
 function runApi() {
-    fetch("https://developer.nps.gov/api/v1/parks?parkCode=yose&api_key=QqdXFabPk82c8cfnPritbZ46DOJkuX1us430e5Qa", {
+    fetch("https://developer.nps.gov/api/v1/parks?parkCode="+ parkCode +"&api_key=QqdXFabPk82c8cfnPritbZ46DOJkuX1us430e5Qa", {
         headers: {
             'accept': 'application/json'
         }
@@ -70,12 +73,13 @@ function runApi() {
         populateActivities(data.data[0].activities)
         directionsInfo.textContent = data.data[0].directionsInfo
         directionsLink.setAttribute("href", data.data[0].directionsUrl)
+        directionsLink.setAttribute("target","_blank")
         weatherInfo.textContent = data.data[0].weatherInfo
     });
 }
 
 function getCampgrounds() {
-    fetch("https://developer.nps.gov/api/v1/campgrounds?parkCode=yose&api_key=QqdXFabPk82c8cfnPritbZ46DOJkuX1us430e5Qa", {
+    fetch("https://developer.nps.gov/api/v1/campgrounds?parkCode="+parkCode+"&api_key=QqdXFabPk82c8cfnPritbZ46DOJkuX1us430e5Qa", {
         headers: {
             'accept': 'application/json'
         }
