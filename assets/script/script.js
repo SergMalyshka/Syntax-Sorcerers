@@ -6,9 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var parksContainerEl = document.querySelector("#parks-container")
     var deleteButton = document.querySelector("#delete")
     var favoritesEl = document.querySelector("#favorites")
+    var stateList = ["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga", "gu", "hi", "id", "il", "in", "ia",
+        "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", "ny", "nc", "nd", "oh", "ok",
+        "or", "pa", "pr", "ri", "sc", "sd", "tn", "tx", "ut", "vt", "vi", "va", "wa", "wv", "wi", "wy"]
 
 
-
+    //API call based on user input
     function runApi() {
         var state = stateSelectorEl.value;
         fetch('https://developer.nps.gov/api/v1/parks?stateCode=' + state + '&api_key=' + apiKey, {
@@ -52,24 +55,29 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Error:', error));
     }
 
+    //populate and display the favorites on the front page
     function populateFavorites() {
         var favorites = JSON.parse(localStorage.getItem("favourites"))
+        //if they are not null, perform for each
         if (favorites !== null) {
             for (var j = 0; j < favorites.length; j++) {
+
+                //create the span for park name
                 var favoriteDiv = document.createElement("div")
                 favoriteDiv.classList = "tags has-addons"
                 var favoriteSpan = document.createElement("span")
                 var deleteButton = document.createElement("a")
-                favoriteSpan.classList = "tag is-link is-large favorite-tags"
+                favoriteSpan.classList = "tag is-info is-medium favorite-tags"
                 favoriteSpan.id = favorites[j].code
-        
+
+                //create the delete button
                 favoriteSpan.textContent = favorites[j].name
-                deleteButton.classList = "tag is-delete is-large"
+                deleteButton.classList = "tag is-delete is-medium"
                 favoriteDiv.appendChild(favoriteSpan)
                 favoriteDiv.appendChild(deleteButton)
                 favoritesEl.appendChild(favoriteDiv)
 
-
+                //event listener on each delete button to remove from favorites 
                 deleteButton.addEventListener("click", function (event) {
                     for (var i = 0; i < favorites.length; i++) {
                         if (favorites[i].name === event.target.parentElement.textContent) {
@@ -81,7 +89,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
 
-                favoriteSpan.addEventListener("click", function(event) {
+                //event listener on each span to be re-directed to the individual park page
+                favoriteSpan.addEventListener("click", function (event) {
                     console.log(event.target.id)
                     document.location = "./individualPark.html?parkCode=" + event.target.id
                 })
@@ -89,12 +98,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    //event listener on main search button
     submitButton.addEventListener("click", function (event) {
         event.preventDefault();
-        parksContainerEl.setAttribute("style", "display: block")
-        runApi();
+        var state = stateSelectorEl.value.toLowerCase();
+        //input validation to ensure proper input
+        if (stateList.indexOf(state) >= 0) {
+            parksContainerEl.setAttribute("style", "display: block")
+            runApi();
+        } 
     });
-
-
+    //dispaly favorites on page load
     populateFavorites();
 });

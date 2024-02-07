@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syntax Sorcerers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fjalla+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    
+
 </head>
+
 <body>
     <header>
         <h1>Sargo National Park Catalog</h1>
@@ -17,32 +22,33 @@
     <main>
         <!-- Enter state form section -->
         <section>
-            <h2>Enter State Below:</h2>
+            <h2>Enter State Abbreviation Below:</h2>
             <form>
-                
+
                 <input type="text" id="stateName" name="stateName" required><br>
                 <button id="submit-button" type="submit">Search</button>
             </form>
+
         </section>
 
         <!-- Parks info coming in Section -->
-        <section id = "parks-container">
+        <section id="parks-container">
             <h2>National Parks: </h2>
             <div class="services-container">
                 <progress id="progress" class="progress is-small is-primary" max="100">15%</progress>
             </div>
             <div class="services-container">
-                
+
             </div>
         </section>
 
-        <section class="hero is-info">
+        <section class="hero is-warning">
             <div class="hero-body">
-              <p class="title">
-                Favorites
-              </p>
+                <p class="title">
+                    Favorites
+                </p>
             </div>
-          </section>
+        </section>
 
 
         <section>
@@ -56,4 +62,5 @@
     </footer>
     <script src="./assets/script/script.js"></script>
 </body>
+
 </html>

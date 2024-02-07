@@ -40,10 +40,11 @@
 }
 
 #preview-img {
+    max-width: 95%;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border: 2px solid black;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-right: 10px;
 }
 
@@ -57,8 +58,16 @@ nav {
     text-align: center;
     font-size: 35px;
     margin-left: 15px;
-    font-family: Archivo Black, sans-serif;
+    text-wrap: wrap;
+    font-family: "Fjalla One", sans-serif;
+    color: white;
 }
+
+@media only screen and (max-width: 600px) {
+    #park-header {
+      font-size: 15px;
+    }
+  }
 
 #map {
     height: 80vh;
@@ -70,9 +79,6 @@ nav {
     background-color: rgb(81, 71, 50);
 }
 
-/* .tags {
-    margin: 2px;
-} */
 
 #navbar {
     background-color: rgb(63, 101, 49);

@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #827663;
+    background-image: linear-gradient(to bottom, #827663, white);
     color: #333;
     line-height: 1.6;
     font-size: 16px;
@@ -25,6 +25,7 @@ header {
 }
 
 header h1 {
+    font-family: "Fjalla One", sans-serif;
     text-align: center;
     margin: 0;
     font-size: 45px;
@@ -50,6 +51,9 @@ form {
 label {
     display: block;
     margin-bottom: 5px;
+}
+.is-info {
+    background-color: #00947ed6!important;
 }
 
 input[type="text"],
@@ -86,6 +90,10 @@ input[type="submit"]:hover {
 .tags {
     align-items: normal!important;
     margin: 3px;
+}
+
+.tag {
+    margin-top: 10px;
 }
 
 .card {
