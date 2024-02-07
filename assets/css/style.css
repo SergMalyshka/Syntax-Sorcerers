@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #f5f5f5;
+    background-color: #827663;
     color: #333;
     line-height: 1.6;
     font-size: 16px;
@@ -17,16 +17,17 @@ body {
 }
 
 header {
-    background: #007bff;
+    background: #3d7232;
     color: #ffffff;
     padding-top: 30px;
     padding-bottom: 15px;
-    border-bottom: 3px solid #035397;
+    border-bottom: 3px solid #5b8c5f;
 }
 
 header h1 {
     text-align: center;
     margin: 0;
+    font-size: 45px;
 }
 
 main {
@@ -61,13 +62,13 @@ input[type="submit"] {
 }
 
 input[type="submit"] {
-    background-color: #28a745;
-    color: white;
+    background-color: #4f7859;
+    color: rgb(70, 156, 80);
     cursor: pointer;
 }
 
 input[type="submit"]:hover {
-    background-color: #218838;
+    background-color: #324869;
 }
 
 /* Services Section */
@@ -79,6 +80,7 @@ input[type="submit"]:hover {
 
 .favorite-tags {
     margin: 2px;
+    
 }
 
 .tags {
@@ -99,7 +101,7 @@ input[type="submit"]:hover {
 }
 
 .card h3 {
-    color: #007bff;
+    color: #4f7145;
 }
 
 footer {
@@ -127,3 +129,27 @@ footer {
 #parks-container{
 display: none;
 }
+
+button {
+    color: #3d7232; /* Button text color */
+    font-size: 22px; /* Button text size */
+    padding: 10px 20px; /* Top and bottom padding, left and right padding */
+    background-color: #f0f0f0; /* Button background color */
+    border: 2px solid #3d7232; /* Border color and width */
+    border-radius: 30px; /* Rounded edges */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+}
+
+button:hover {
+    background-color: #e6e6e6; /* Slightly darker shade on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+h2{
+    color:#3d7232;
+    font-size: 22px;
+    font-weight: 500;
+}
+
