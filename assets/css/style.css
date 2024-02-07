@@ -87,6 +87,10 @@ input[type="submit"]:hover {
     
 }
 
+.tags:last-child {
+    margin-bottom: 0!important;
+}
+
 .tags {
     align-items: normal!important;
     margin: 3px;
