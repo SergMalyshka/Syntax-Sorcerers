@@ -191,7 +191,7 @@ function checkStorage() {
             if (favourites[i].name === parkName) {
                 //if local storage contains our park, set styling for the button to filled in heart and text
                 heartEl.classList = "fa-solid fa-heart"
-                favoriteTextEl.textContent = "Already Favorited"
+                favoriteTextEl.textContent = "Favorited"
             }
         }
     }
@@ -214,7 +214,7 @@ favoriteButton.addEventListener("click", function () {
         code: parkCode
     }
     //if already favourited, loop through the items, find it, and remove it, call check storage to update button properly
-    if (favoriteTextEl.textContent === "Already Favorited") {
+    if (favoriteTextEl.textContent === "Favorited") {
         for (var i = 0; i < favourites.length; i++) {
             if (favourites[i].name === parkName) {
                 favourites.splice(i, 1);
